@@ -34,6 +34,7 @@ class BountiesSpider(scrapy.Spider):
             b_item.project_type = item.get('project_type')
             b_item.time_commitment = item.get('metadata', {}).get('projectLength')
             b_item.experience_level = item.get('metadata', {}).get('experienceLevel')
+            b_item.url = item.get('url')
             yield b_item
         
         res = re.search(r"https://gitcoin.co/api/v0.1/bounties/slim/\?network=mainnet&applicants=ALL&order_by=-web3_created&offset=(.*)&limit=(.*)", response.url)
