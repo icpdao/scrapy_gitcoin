@@ -112,6 +112,7 @@ class ScrapyGitcoinBountiesDownloaderMiddleware:
         return s
 
     def process_request(self, request, spider):
+        request.headers[b'USER_AGENT'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36'
         if request.url.startswith("https://gitcoin.co/api/v0.1/bounties/slim"):
             request.headers[b'Accept'] = 'application/json'
 
