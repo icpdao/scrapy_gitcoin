@@ -88,5 +88,5 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-PROXY = '127.0.0.1:7890'
-# CSV_ROOT_PATH = '/tmp/scrapy_gitcoin'
+PROXY = '192.168.1.151:7890'
+CSV_ROOT_PATH = '/work/scrapyd'
