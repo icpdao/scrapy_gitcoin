@@ -3,15 +3,22 @@ import csv
 from itemadapter import ItemAdapter
 
 class CsvPipeline(object):
-    def __init__(self):
+    def __init__(self, csv_root_path):
         self.store_file_config = {}
         self.store_file_spider_config = {}
+        self.csv_root_path = csv_root_path
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            csv_root_path=crawler.settings.get('CSV_ROOT_PATH', os.path.dirname(__file__))
+        )
 
     def create_or_find(self, spider, item):
         if self.store_file_config.get(item.csv_meta['name'], None):
             return self.store_file_config[item.csv_meta['name']]
 
-        store_file = '{}/{}.csv'.format(os.path.dirname(__file__), item.csv_meta['name'])
+        store_file = '{}/{}.csv'.format(self.csv_root_path, item.csv_meta['name'])
         file = open(store_file, 'a+', encoding="utf-8", newline='')
         writer = csv.writer(file, dialect="excel")
         config = {

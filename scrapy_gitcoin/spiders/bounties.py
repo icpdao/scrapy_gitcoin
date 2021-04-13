@@ -17,7 +17,7 @@ class BountiesSpider(scrapy.Spider):
             b_item = BountiesItem()
             b_item.item_id = item['pk']
             b_item.title = item['title']
-            b_item.description = item['metadata']['issueDescription']
+            b_item.description = item['metadata'].get('issueDescription')
             b_item.status = item['status']
             b_item.categories = item['bounty_categories']
 
