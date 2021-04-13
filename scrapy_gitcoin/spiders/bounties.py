@@ -21,7 +21,10 @@ class BountiesSpider(scrapy.Spider):
             b_item.status = item.get('status')
             b_item.categories = item.get('bounty_categories')
 
-            b_item.keywords = item.get('keywords', '').split(',')
+            keywords = item.get('keywords', '')
+            if keywords and isinstance(keywords, str) :
+                b_item.keywords = keywords.split(',')
+
             b_item.value_in_usdt = item.get('value_in_usdt')
             b_item.token_name = item.get('token_name')
             b_item.value_in_token = item.get('value_in_token')
